@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exam Percentage & Grade Calculator</title>
+ <style>
+ /* style.css */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #070707, #cb08f1);
+  color: white;
+  text-align: center;
+}
+
+.container {
+  max-width: 500px;
+  margin: 100px auto;
+  padding: 20px;
+  background: rgba(26, 25, 25, 0.7);
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+  margin-bottom: 10px;
+  font-size: 2rem;
+  color: #ffd700;
+}
+
+form {
+  margin: 20px 0;
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background: #ffd700;
+  color: black;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #0fff07;
+}
+
+.result {
+  margin-top: 20px;
+  padding: 10px;
+  background: rgba(129, 126, 126, 0.1);
+  border-radius: 10px;
+}
+
+.result p {
+  font-size: 1.2rem;
+  margin: 5px 0;
+}
+
+#percentage {
+  color: #1abc9c;
+}
+
+#grade {
+  color: #e74c3c;
+}
+
+ </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Exam Percentage & Grade Calculator</h1>
+    <p>Enter your marks to calculate your performance!</p>
+    <form id="gradeForm">
+      <label for="obtainedMarks">Obtained Marks:</label>
+      <input type="number" id="obtainedMarks" placeholder="Enter obtained marks" required>
+      <label for="totalMarks">Total Marks:</label>
+      <input type="number" id="totalMarks" placeholder="Enter total marks" required>
+      <button type="submit">Calculate</button>
+    </form>
+    <div class="result">
+      <h2>Results</h2>
+      <p id="percentage"></p>
+      <p id="grade"></p>
+    </div>
+  </div>
+  <script>
+  // script.js
+document.getElementById('gradeForm').addEventListener('submit', function (f) {
+  f.preventDefault();
+
+  // Get input values
+  var obtainedMarks = parseFloat(document.getElementById('obtainedMarks').value);
+  var totalMarks = parseFloat(document.getElementById('totalMarks').value);
+
+  // Validate input
+  if (  obtainedMarks < 0 || totalMarks <= 0 || obtainedMarks > totalMarks) {
+    alert('Please enter valid marks.');
+    return;
+  }
+
+  // Calculate percentage
+  var percentage = ((obtainedMarks / totalMarks) * 100);
+
+  // Determine grade using switch-case
+  let grade;
+  switch (true) {
+    case percentage >= 100:
+      grade = 'enter a true value';
+      break;
+    case percentage >= 90:
+      grade = 'A+';
+      break;
+    case percentage >= 80:
+      grade = 'A';
+      break;
+    case percentage >= 70:
+      grade = 'B';
+      break;
+    case percentage >= 60:
+      grade = 'C';
+      break;
+    case percentage >= 50:
+      grade = 'D';
+      break;
+    default:
+      grade = 'F';
+      break;
+  }
+
+  // Display results
+  document.getElementById('percentage').innerText = `Percentage: ${percentage}%`;
+  document.getElementById('grade').innerText = `Grade: ${grade}`;
+});
+
+  </script>
+</body>
+</html>
